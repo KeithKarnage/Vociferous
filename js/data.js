@@ -1100,14 +1100,7 @@ let notes = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B','C','C#','D','
 			],
 			[
 				{note: 'rest', length: 1},
-			],
-			[
-				{note: 'rest', length: 1},
-			],
-
-			
-
-
+			]
 		]
 	}
 }

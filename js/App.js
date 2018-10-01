@@ -187,18 +187,18 @@ let mouseHandler = e => {
 			//  SPACE BAR
 			case 32:
 			// console.log(this.singAlong)
-				if(app.singAlong)
+				if(app.singAlong && app.singAlong.started)
 					app.singAlong.pause();
 			break;
 			//  LEFT ARROW
 			case 37:
-				if(app.singAlong) {
+				if(app.singAlong && app.singAlong.started) {
 					app.singAlong.back();
 				}
 			break;
 			//  RIGHT ARROW
 			case 39:
-				if(app.singAlong)
+				if(app.singAlong && app.singAlong.started)
 					app.singAlong.forward();
 			break;
 		}

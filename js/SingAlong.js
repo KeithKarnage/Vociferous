@@ -12,7 +12,8 @@ class SingAlong {
 		this.data = songData[this.song];
 		this.userPitch = [];
 
-		this.paused = false;
+		this.started = false;
+		this.paused = true;
 		this._pausing = false;
 
 		this.songTime = 0;
@@ -31,6 +32,7 @@ class SingAlong {
 				this.audio.play();
 				setTimeout( () => {
 					app.singAlong.paused = false;
+					app.singAlong.started = true;
 				},this.data.audioDelay);	
 			},500);
 			
@@ -85,7 +87,8 @@ class SingAlong {
 				//  END CASE
 				if(this.measureIndex === this.data.measures.length) {
 					this.measureIndex = 0;
-					this.songTime = 0;
+					this.songTime = -this.data.audioDelay;
+					this.audio.currentTime = 0;
 					this.pause();
 				}
 			}
@@ -101,7 +104,8 @@ class SingAlong {
 				this.userPitch.push(pitch);
 		}
 		
-		this.updateMouse()
+		if(this.started)
+			this.updateMouse()
 		
 	};
 	render() {
@@ -182,7 +186,6 @@ class SingAlong {
 	updateMouse() {
 		//  WHILE THE MOUSE IS DEPRESSED
 		if(_mouse.pressed) {
-
 			//  IF WE HAVEN'T PAUSED OR UNPAUSED IT YET
 			if(!this._pausing) {
 				//  NOW WE ARE
