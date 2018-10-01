@@ -162,12 +162,19 @@ let mouseHandler = e => {
 		e.preventDefault();
 		
 		switch(e.type) {
+			
+			case 'touchstart':
+				_mouse.x = e.touches[0].clientX;
+				_mouse.y = e.touches[0].clientY;
+				_mouse.pressed = true;
+			break;
 			case 'mousedown':
 				_mouse.x = e.clientX;
 				_mouse.y = e.clientY;
 				_mouse.pressed = true;
 			break;
 			case 'mouseup':
+			case 'touchend':
 				_mouse.pressed = false;
 			break;
 		}
@@ -204,7 +211,8 @@ let mouseHandler = e => {
 		}
 	};
 
-// addEventListener('touchstart',touchHandler,false);
+addEventListener('touchstart',mouseHandler,false);
+addEventListener('touchend',mouseHandler,false);
 addEventListener('mousedown',mouseHandler,false);
 addEventListener('mouseup',mouseHandler,false);
 
